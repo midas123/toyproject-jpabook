@@ -10,11 +10,14 @@ import javax.persistence.ManyToOne;
 
 import com.example.demo.domain.item.Item;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor(access=AccessLevel.PROTECTED)
 public class OrderItem {
 	@Id @GeneratedValue
 	@Column(name="order_item_id")
@@ -30,5 +33,30 @@ public class OrderItem {
 	
 	private int orderPrie;
 	private int count;
+
+//	protected OrderItem() {
+//		
+//	}
+	
+	//생성 메서드
+	public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
+		OrderItem orderItem = new OrderItem();
+		orderItem.setItem(item);
+		orderItem.setOrderPrie(orderPrice);
+		orderItem.setCount(count);
+		item.subtractStock(count);
+		return orderItem;
+	}
+	
+	
+	//비지니스 로직
+	public void cancel() {
+		getItem().addStock(count);
+	}
+	
+	//조회 로직
+	public int getTotalPrice() {
+		return getOrderPrie() * getCount();
+	}
 	
 }
