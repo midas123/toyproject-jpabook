@@ -15,7 +15,7 @@ import lombok.Setter;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name ="dtype")
 @Getter 
-//@Setter //엔티티 필드 값은 비지니스 로직 메서드로 변경
+@Setter //엔티티 필드 값은 비지니스 로직 메서드로 변경
 public abstract class Item {
 	@Id @GeneratedValue
 	@Column(name = "item_id")

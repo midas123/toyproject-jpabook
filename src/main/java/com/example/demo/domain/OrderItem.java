@@ -31,7 +31,7 @@ public class OrderItem {
 	@JoinColumn(name="order_id")
 	private Order order;
 	
-	private int orderPrie;
+	private int orderPrice;
 	private int count;
 
 //	protected OrderItem() {
@@ -42,7 +42,7 @@ public class OrderItem {
 	public static OrderItem createOrderItem(Item item, int orderPrice, int count) {
 		OrderItem orderItem = new OrderItem();
 		orderItem.setItem(item);
-		orderItem.setOrderPrie(orderPrice);
+		orderItem.setOrderPrice(orderPrice);
 		orderItem.setCount(count);
 		item.subtractStock(count);
 		return orderItem;
@@ -56,7 +56,7 @@ public class OrderItem {
 	
 	//조회 로직
 	public int getTotalPrice() {
-		return getOrderPrie() * getCount();
+		return getOrderPrice() * getCount();
 	}
 	
 }
