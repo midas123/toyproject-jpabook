@@ -80,6 +80,7 @@ public class ItemController {
                 form.getStockQuantity(),
                 form.getAuthor(),
                 form.getIsbn());
+        //파라미터 개수가 너무 많으면 Dto 객체를 전달해도 된다.
         return "redirect:/items";
     }
 

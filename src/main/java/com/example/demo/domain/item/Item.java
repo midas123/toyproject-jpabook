@@ -1,15 +1,13 @@
 package com.example.demo.domain.item;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.*;
-
 import com.example.demo.domain.Category;
 import com.example.demo.exception.NotEnoughStockException;
-
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -39,5 +37,11 @@ public abstract class Item {
 			throw new NotEnoughStockException("남은 수량이 없습니다.");
 		}
 		this.stockQuantity = restStock;
+	}
+
+	public Item updateItemStockAndPrice(Item param){
+		this.setPrice(param.getPrice());
+		this.setStockQuantity(param.getStockQuantity());
+		return this;
 	}
 }

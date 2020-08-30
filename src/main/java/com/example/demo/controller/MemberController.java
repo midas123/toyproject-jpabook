@@ -44,6 +44,10 @@ public class MemberController {
 
         Address address = new Address(memberForm.getCity(), memberForm.getStreet(),
                 memberForm.getZipcode());
+        /*
+         member 객체에 값을 넣을때 setter를 사용했지만
+         생성자 메서드를 ex.creatMember() 만들고 setter는 사용하지 말아야한다.
+         */
         Member member = new Member();
         member.setName(memberForm.getName());
         member.setAddress(address);

@@ -27,6 +27,11 @@ public class ItemService {
 	@Transactional
 	public Item updateItem(Long itemId, Book param){
 		Item item = itemRepository.findOne(itemId);
+		/*
+		아래 코드처럼 setter를 직접 사용하지 말고
+		엔티티 클래스의 내부에서 setter를 사용하는 메서드를 정의해야
+		엔티티 변경 시점을 추적 관리하기 쉽다.
+		*/
 		item.updateItemStockAndPrice(param);
 		//item.setPrice(param.getPrice());
 		//item.setStockQuantity(param.getStockQuantity());
