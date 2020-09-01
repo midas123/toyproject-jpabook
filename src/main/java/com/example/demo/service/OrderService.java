@@ -1,20 +1,16 @@
 package com.example.demo.service;
 
-import javax.persistence.CascadeType;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.example.demo.domain.Delivery;
-import com.example.demo.domain.Member;
-import com.example.demo.domain.Order;
-import com.example.demo.domain.OrderItem;
+import com.example.demo.domain.*;
 import com.example.demo.domain.item.Item;
 import com.example.demo.repository.ItemRepository;
 import com.example.demo.repository.MemberRepository;
 import com.example.demo.repository.OrderRepository;
-
+import com.example.demo.repository.OrderSearch;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional(readOnly=true)
@@ -29,7 +25,7 @@ public class OrderService {
 		//엔티티 조회
 		Member member = memberRepoository.findOne(memberId);
 		Item item = itemRepoository.findOne(itemId);
-		
+
 		//배송정보 생성
 		Delivery delivery = new Delivery();
 		delivery.setAddress(member.getAddress());
@@ -54,6 +50,8 @@ public class OrderService {
 		order.cancel();
 	}
 	
-	//public List<Order> findOrders();
+	public List<Order> findOrders(OrderSearch orderSearch){
+		return orderRepository.findAllByCriteria(orderSearch);
+	}
 }
 
