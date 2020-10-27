@@ -3,10 +3,9 @@ package com.example.demo.manytoone;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter @Setter
@@ -19,10 +18,10 @@ public class Team {
     private String name;
 
     /*
+    N:1 양방향
     */
-//    @OneToMany
-//    @JoinColumn(name="team_id")
-//    private List<Member> members = new ArrayList<>();
+    @OneToMany(mappedBy = "team")
+    private List<Member> members = new ArrayList<>();
 
 
 }
