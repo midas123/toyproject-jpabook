@@ -24,7 +24,10 @@ public class Member {
     * 이 테이블은 양쪽 테이블의 참조키를 칼럼으로 하며,
     * 다른 칼럼을 추가할 수 없는 단점이 있음
     * */
-    @ManyToMany
-    @JoinTable(name="MEMBER_PRODUCT")
-    List<Product> products = new ArrayList<>();
+    //@ManyToMany
+    //@JoinTable(name="MEMBER_PRODUCT")
+    //List<Product> products = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member")
+    List<Member> members = new ArrayList<>();
 }

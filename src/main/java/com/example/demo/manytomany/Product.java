@@ -21,6 +21,9 @@ public class Product {
     /*
     * N:M 양방향
     * */
-    @ManyToMany(mappedBy = "products")
-    private List<Member> members = new ArrayList<>();
+    //@ManyToMany(mappedBy = "products")
+    //private List<Member> members = new ArrayList<>();
+
+    @OneToMany(mappedBy = "product")
+    List<Product> products = new ArrayList<>();
 }
